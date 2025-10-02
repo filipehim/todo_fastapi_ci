@@ -15,7 +15,6 @@ async def register_user(user: UserSchema, session: Session = Depends(get_session
     """
     user_f = session.query(ModelUser).filter(ModelUser.email==user.email).first()
     if user_f:
-        # já existe um usuário com esse email
         raise HTTPException(status_code=400, detail='E-mail do usuário já cadastrado')
     else:
         encrypted_password = bcrypt_context.hash(user.password)

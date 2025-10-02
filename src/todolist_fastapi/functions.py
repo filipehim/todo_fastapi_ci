@@ -29,8 +29,6 @@ def verify_token(token: str = Depends(oauth2_schema), session: Session = Depends
         print(err)
         raise HTTPException(status_code=401, detail='Unauthorized')
 
-    # Verificar se o token é válido
-    # extrair o id do usuário
     user = session.query(ModelUser).filter(ModelUser.id==id_user).first()
     if not user:
         raise HTTPException(status_code=401, detail='Acesso Inválido')
