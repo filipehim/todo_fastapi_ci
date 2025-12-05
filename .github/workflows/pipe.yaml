@@ -7,6 +7,10 @@ on:
 jobs:
   build:
     runs-on: windows-latest   # usa Windows para rodar PowerShell
+    env:
+      ACCESS_TOKEN_EXPIRE_MINUTE: 30
+      SECRET_KEY: 28hIJBUKULzM5WfQFZYoN5O6NiG1B3vm
+      ALGORITHM: "HS256"
 
     steps:
       # 1. Checkout do código
@@ -19,19 +23,19 @@ jobs:
         with:
           python-version: "3.12"
 
-      # 3. Instalar Poetry
-      - name: Instalar Poetry
+      - name: Instalar pipx e Poetry
         shell: pwsh
         run: |
-          (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
+          python -m pip install pipx
+          pipx install poetry
+          echo "$env:USERPROFILE\.local\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
+          poetry --version
 
-      # 4. Instalar dependências
       - name: Instalar dependências
         shell: pwsh
         run: |
           poetry install
 
-      # 5. Rodar testes
       - name: Rodar testes
         shell: pwsh
         run: |

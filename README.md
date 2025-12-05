@@ -17,7 +17,7 @@ API for task management, built with the [FastAPI](https://fastapi.tiangolo.com/)
 - Pytest
 - Uvicorn
 
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 ## 📦 Requirements
 
 - Python 3.12+
