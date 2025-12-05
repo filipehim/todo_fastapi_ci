@@ -7,6 +7,10 @@ on:
 jobs:
   build:
     runs-on: windows-latest   # usa Windows para rodar PowerShell
+    env:
+      ACCESS_TOKEN_EXPIRE_MINUTE: 30
+      SECRET_KEY: 28hIJBUKULzM5WfQFZYoN5O6NiG1B3vm
+      ALGORITHM: "HS256"
 
     steps:
       # 1. Checkout do código
