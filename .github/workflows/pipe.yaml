@@ -1,0 +1,38 @@
+name: Verify CI
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: windows-latest   # usa Windows para rodar PowerShell
+
+    steps:
+      # 1. Checkout do código
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      # 2. Configurar Python 3.12
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      # 3. Instalar Poetry
+      - name: Instalar Poetry
+        shell: pwsh
+        run: |
+          (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
+
+      # 4. Instalar dependências
+      - name: Instalar dependências
+        shell: pwsh
+        run: |
+          poetry install
+
+      # 5. Rodar testes
+      - name: Rodar testes
+        shell: pwsh
+        run: |
+          poetry run pytest
